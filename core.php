@@ -87,6 +87,7 @@ function wp_pagenavi( $args = array() ) {
 			if ( $paged > 1 && !empty( $options['prev_text'] ) ) {
 				$out .= $instance->get_single( $paged - 1, $options['prev_text'], array(
 					'class' => 'previouspostslink',
+					'rel'	=> 'prev'
 				) );
 			}
 
@@ -154,6 +155,7 @@ function wp_pagenavi( $args = array() ) {
 			if ( $paged < $total_pages && !empty( $options['next_text'] ) ) {
 				$out .= $instance->get_single( $paged + 1, $options['next_text'], array(
 					'class' => 'nextpostslink',
+					'rel'	=> 'next'
 				) );
 			}
 
@@ -288,7 +290,7 @@ class PageNavi_Core {
 	static function init( $options ) {
 		self::$options = $options;
 
-		add_action( 'wp_print_styles', array( __CLASS__, 'stylesheets' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'stylesheets' ) );
 	}
 
 	static function stylesheets() {
